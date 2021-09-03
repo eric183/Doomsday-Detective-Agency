@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": ["./src/client/next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
   "extends": "./src/client/tsconfig.json"
