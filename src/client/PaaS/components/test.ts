@@ -1,10 +1,5 @@
-interface RootObject {
-  foo: number;
-  zoo: Zoo;
-}
-
-interface Zoo {
-  gender: string;
-}
-
-export { RootObject };
+const happything = {
+  a: 2,
+  b: 'fffff',
+};
+export { happything };

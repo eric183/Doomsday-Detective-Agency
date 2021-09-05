@@ -17,8 +17,8 @@
     "composite": true
   },
   "references": [
-    { "path": "src/client" }
+    { "path": "./src/client" }
   ],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.d.ts", ".eslintrc.js"],
   "exclude": ["node_modules"]
 }

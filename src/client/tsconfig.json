@@ -2,7 +2,6 @@
   "compilerOptions": {
     "jsx": "react",
     "baseUrl": "./",
-
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -14,9 +13,10 @@
     "outDir": "./dist",
     "incremental": true,
     "skipLibCheck": true,
+    "composite": true,
     "paths": {
-      "~/*":  ["PaaS/*"],
-      "~components/*": ["PaaS/components/*"],
+      "~/*":  ["./PaaS/*"],
+      "~components/*": ["./PaaS/components/*"],
       "@LocalType": ["./Paas/index.d.ts"]
     }
   }
