@@ -5,7 +5,7 @@ export class CatsController {
   @Get()
   findAll() {
     return {
-      data: 'cat from controller',
+      data: 'I am the cat, not you',
     };
   }
 }
