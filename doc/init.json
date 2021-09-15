@@ -1,0 +1,18 @@
+{
+    "token": "xxxx",
+    "container": "body",
+    "language": "javascript",
+    "library": "react",
+    "terminal": {
+        "active": true
+    },
+    "Role": "OWNDER",
+    "metaData": {
+        "userAvatar": "xxxx",
+        "userName": "EricKuang"
+    },
+    "template": {
+        "isFav": true,
+        "history": "sdajklfsalfjklajkldfkljkljasdklflkjasdlkf"
+    }
+}

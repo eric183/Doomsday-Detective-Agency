@@ -1,0 +1,72 @@
+version: '3.7'
+# all the containers have to declare inside services
+services:
+  # App service
+  node:
+    image: "node:14.17.5"
+    volumes: 
+      - .:/app
+    working_dir: /app
+    command: sh -c "yarn nest"
+    # expose:
+    ports: 
+      - 3000:3000
+      - 4001:4001
+    # Redis service
+    depends_on: 
+      - redis
+    environment:
+      - HTTP_PROXY=$HTTP_PROXY
+      - http_proxy=$http_proxy
+      - HTTPS_PROXY=$HTTPS_PROXY
+      - https_proxy=$https_proxy
+    networks:
+      - nest-chat-network
+  nginx:
+    restart: always
+    image: nginx
+    volumes: 
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      # - ./templates:/etc/nginx/templates
+    ports:
+      - "8080:80"
+    environment:
+      - HTTP_PROXY=$HTTP_PROXY
+      - http_proxy=$http_proxy
+      - HTTPS_PROXY=$HTTPS_PROXY
+      - https_proxy=$https_proxy
+    networks:
+      - nest-chat-network
+    #   - NGINX_HOST=foobar.com
+    #   - NGINX_PORT=80
+  redis:
+    # image name
+    image: redis:latest
+    # container name
+    container_name: redis
+    # execute the command once start redis container
+    command: [
+        "redis-server",
+        "--bind",
+        "redis",
+        "--port",
+        "6379"
+    ]
+    # save (persist) data and also to share data between containers
+    volumes:
+      - red_data:/var/lib/redis
+    # redis port, this is take value from env file
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
+      # application network, each container for a service joins this network
+    networks:
+      - nest-chat-network
+
+  #Docker Networks
+networks:
+  # All container connect in a network
+  nest-chat-network:
+    driver: bridge
+# save (persist) data
+volumes:
+  red_data: {}

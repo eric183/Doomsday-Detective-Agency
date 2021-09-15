@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
     "outDir": "./dist",
+    "rootDir": ".",
     "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true
+    "composite": true
   },
-  "include": ["./src/client/next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "extends": "./src/client/tsconfig.json"
+  "references": [
+    { "path": "./src/client" },
+    { "path": "./src/server" }
+  ],
+  "include": [
+    "config/*", 
+    "scripts/*",
+    "src/client/tsconfig.json",
+    "src/server/tsconfig.json",
+    "src/client/PaaS/**/*.tsx", 
+    "src/client/PaaS/**/*.ts", 
+    "src/server/**/*", 
+    "src/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "dist/**/*"]
 }

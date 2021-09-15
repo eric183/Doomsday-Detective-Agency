@@ -1,0 +1,21 @@
+{
+    "token": "xxxx",
+    "container": "body",
+    "language": "javascript",
+    "library": "react",
+    "terminal": {
+        "active": true
+    },
+    "sideBar": {
+        "active": true
+    },
+    "template": {
+        "language": "java",
+        "library": "spring"
+    },
+    "exclude": [],
+    "include": [],
+    "freezeCandidacy": {
+        "ediotr": false
+    }
+}

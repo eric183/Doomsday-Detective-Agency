@@ -1,19 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "jsx": "react",
     "module": "esnext",
+    "esModuleInterop": true,
+    // "module": "commonjs",
+    "declaration": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "../../../dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "paths": {
+      "~/*":  ["./PaaS/*"],
+      "~components/*": ["./PaaS/components/*"],
+      "D42_FrontType": ["app.d.ts"],
+    },
+  }
 }
