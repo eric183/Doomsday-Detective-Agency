@@ -8,7 +8,11 @@
 * 样式管理: Tailwindcss
 * 类型样式: Emotion
 
+## 挂载域名
+* http://docker.happylandle.club
 ## How to start
 * Install the dependencies: yarn
 * RUN: yarn dev
 * Container: docker-compose up -d
+
+
