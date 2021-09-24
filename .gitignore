@@ -38,4 +38,4 @@ lerna-debug.log*
 **/server/dist/
 
 # client
-src/client/PaaS/dist/
+# src/client/PaaS/dist/
