@@ -27,11 +27,11 @@ services:
     image: nginx
     volumes: 
       - ./default.conf:/etc/nginx/conf.d/default.conf
-      - ./src/client/PaaS/dist:/etc/nginx/templates
+      - ./src/client/PaaS/dist:/var/www/public
       # - ./templates:/etc/nginx/templates
     ports:
       - "80:80"
-    command: sh -c "chown nginx:nginx /etc/nginx/templates/*"
+    # command: sh -c "cd /etc/nginx/templates && chown nginx:nginx ./*"
 
     environment:
       - HTTP_PROXY=$HTTP_PROXY
