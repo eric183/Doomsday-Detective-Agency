@@ -1,16 +1,23 @@
 {
-    "presets": [
-      "@babel/preset-env",
+  "presets": [
+    "@babel/preset-env",
+    [
       "@babel/preset-react",
-      "@babel/preset-typescript"
+      { 
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
     ],
-    "plugins": [
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "regenerator": true
-        },
-        "@babel/plugin-syntax-dynamic-import"
-      ]
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@emotion",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      },
+      "@babel/plugin-syntax-dynamic-import"
     ]
-  }
+  ]
+}

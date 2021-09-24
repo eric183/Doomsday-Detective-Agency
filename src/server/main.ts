@@ -5,10 +5,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useWebSocketAdapter(new RedisIoAdapter(app)); // Add this line
+  // app.useWebSocketAdapter(new RedisIoAdapter(app)); // Add this line
   app.enableCors();
   await app.listen(3000);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  // console.log(`Application is running on: ${await app.getUrl()}`);
 
   // ptyProcess.write('ls\r');
 }

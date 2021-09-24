@@ -2,8 +2,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as monaco from 'monaco-editor';
 import { useOT } from '~/hooks';
 import { useStore } from '~/stores';
+import styled from '@emotion/styled';
 // import { useEffect } from 'react-dom/node_modules/@types/react';
 let editor: monaco.editor.IStandaloneCodeEditor;
+
+const EditorLayout = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 const EditorIndex: React.FC = () => {
   const divEl = useRef<HTMLDivElement>(null);
   const { io } = useOT();
@@ -26,7 +33,10 @@ const EditorIndex: React.FC = () => {
       editor = monaco.editor.create(divEl.current, {
         value: initStr,
         language: 'typescript',
+        theme: 'vs-dark',
+        automaticLayout: true,
       });
+      editor.layout();
       // editor.onDidChangeModel((d) => {
       //   console.log(d);
       // });
@@ -57,7 +67,9 @@ const EditorIndex: React.FC = () => {
     };
   }, []);
 
-  return <div className="Editor" ref={divEl} style={{ height: 500 }}></div>;
+  // return <div className="Editor" ref={divEl} style={{ height: '100%' }}></div>;
+  return <EditorLayout ref={divEl} className="overflow-y-hidden" />;
+  // return <div className="Editor flex"  ></div>;
 };
 
 export { EditorIndex };

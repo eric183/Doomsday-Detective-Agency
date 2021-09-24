@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
-module.exports = (ENV) => {
+module.exports = (ENV, argv) => {
   return {  
     entry: path.join(__dirname, '..', 'src/client/PaaS/app.tsx'),
     output: { path: path.join(__dirname, '../src/client/PaaS', "dist"), filename: "bundle.js" },
@@ -15,9 +15,10 @@ module.exports = (ENV) => {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [{
-                    loader:  "babel-loader",
+                    // loader:  "babel-loader",
                     options: {
                         extends: path.join(__dirname, '.babelrc')
+                        // extends: path.join(__dirname, 'babel.config.js')
                     }}
                 ],
             },
@@ -35,14 +36,14 @@ module.exports = (ENV) => {
                 test: /\.(css|scss)$/,
                 use: [
                     "style-loader", 
-                    "css-loader", 
+                    { loader: 'css-loader', options: { importLoaders: 1 } },
                     {
                         loader: 'postcss-loader',
-                        // options: {
-                        //     postcssOptions: {
-                        //         config: path.join(__dirname, 'postcss.config.js')
-                        //     }
-                        // }
+                        options: {
+                            postcssOptions: {
+                                config: path.resolve(__dirname, 'postcss.config.js')
+                            }
+                        }
                     }
                 ],
             },
@@ -54,7 +55,7 @@ module.exports = (ENV) => {
     },
     resolve: {
         modules: [path.resolve(__dirname, '..', 'node_modules')],
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
         plugins: [  
             new TsconfigPathsPlugin({
                 configFile: path.resolve(__dirname, '..', 'src/client/tsconfig.json')
@@ -66,6 +67,8 @@ module.exports = (ENV) => {
             path.resolve(__dirname, '..', 'node_modules'),
         ],
     },
+    // devtool: process.env.NODE_ENV === 'development' ? 'source-map' : 'none',
+    devtool: 'eval',
     devServer: {
         historyApiFallback: true,
         static: {

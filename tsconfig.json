@@ -3,7 +3,11 @@
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": "./",
-    "composite": true
+    "composite": true,
+    "declaration": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "references": [
     { "path": "./src/client" },
@@ -12,12 +16,7 @@
   "include": [
     "config/*", 
     "scripts/*",
-    "src/client/tsconfig.json",
-    "src/server/tsconfig.json",
-    "src/client/PaaS/**/*.tsx", 
-    "src/client/PaaS/**/*.ts", 
-    "src/server/**/*", 
-    "src/**/*.d.ts"
+    "src/**/*"    
   ],
   "exclude": ["node_modules", "dist/**/*"]
 }

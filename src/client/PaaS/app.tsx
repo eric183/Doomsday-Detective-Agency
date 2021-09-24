@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './styles';
 
-import LazyComp from './pages/sample';
+import LazyComp from './pages';
 import TermComp from './pages/terminal';
-
+import IDEComp from './pages/IDE';
+// import { D42_FrontType } from './types';
+// import lottieWeb from 'lottie-web';
+// import from 'Daad';
+// import { } from 'lottieWeb';
 // const SOCKET_INSTANCE = socketHelper('http://192.168.2.12:4001');
 
 // create(set => ({
@@ -23,9 +28,13 @@ const App = () => {
   // {
   //   // url: 'http://192.168.2.12:4001',
   // }
+  // Lottie.loadAnimation({})
+  // loadAni`
+
   return (
     <Router>
       <Switch>
+        <Route path="/ide" component={IDEComp} />
         <Route path="/terminal" component={TermComp} />
         <Route path="/" component={LazyComp} />
       </Switch>

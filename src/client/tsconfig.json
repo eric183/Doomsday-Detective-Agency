@@ -1,26 +1,30 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "noImplicitAny": false,
     "module": "esnext",
+    "target": "es2017",
     "esModuleInterop": true,
-    // "module": "commonjs",
     "declaration": true,
     "moduleResolution": "node",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
     "sourceMap": true,
-    "outDir": "../../../dist",
+    "outDir": "../../dist/client",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "composite": true,
     "paths": {
-      "~/*":  ["./PaaS/*"],
       "~components/*": ["./PaaS/components/*"],
-      "D42_FrontType": ["app.d.ts"],
-    },
-  }
+      "~/*": [
+        "./PaaS/*"
+      ]
+    }
+  },
+  "include": [
+    "PaaS/**/*.tsx"
+  ]
 }

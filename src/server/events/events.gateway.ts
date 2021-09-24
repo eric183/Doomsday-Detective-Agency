@@ -9,38 +9,19 @@ import { Logger } from '@nestjs/common';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Socket, Server } from 'socket.io';
+import { io } from 'socket.io-client';
+
 import * as os from 'os';
 import * as pty from 'node-pty';
 // @WebSocketGateway({ cors: true })
 // @WebSocketGateway(4001, { cors: true, pingInterval: 250, pingTimeout: 200 })
 @WebSocketGateway(4001, { cors: true })
 export class EventsGateway {
-  @WebSocketServer() server;
+  @WebSocketServer()
+  server: Server;
   ptyprocess;
   users = 0;
   shellCenterData;
-  // server: Server;
-  // private logger: Logger = new Logger('EventsGateway');
-  // @WebSocketServer()
-  // private logger: Logger = new Logger('EventsGateway');
-
-  // @SubscribeMessage('events')
-  // findAll(@MessageBody() data: unknown): Observable<WsResponse<number>> {
-  //   console.log(data);
-  //   return from([1, 2, 3]).pipe(
-  //     map((item) => ({ event: 'events', data: item })),
-  //   );
-  // }
-  // @SubscribeMessage('msgToServer')
-  // findAll(@MessageBody() data: unknown): Observable<WsResponse<number>> {
-  //   console.log(data);
-  //   return from([1, 2, 3]).pipe(
-  //     map((item) => ({ event: 'events', data: item })),
-  //   );
-  //   // return from([1, 2, 3]).pipe(
-  //   //   map((item) => ({ event: 'events', data: item })),
-  //   // );
-  // }
   constructor() {
     const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 
@@ -52,7 +33,26 @@ export class EventsGateway {
       env: process.env,
       handleFlowControl: true,
     });
-
+    const myio = io('ws://192.168.2.7:4001');
+    // const myio = io('ws://192.168.2.15:8000/websocket', {
+    //   transports: ['websocket'],
+    // });
+    // const myio = io('ws://docker.happylandle.club:4001');
+    // console.log(this.server);
+    myio.on('connect', () => {
+      console.log('iiiii');
+      // myio.emit(
+      //   'termToServer',
+      //   JSON.stringify({
+      //     type: 'term',
+      //     value: 'sdafasdfasdfasdfsa',
+      //     eventType: '',
+      //   }),
+      // );
+    });
+    // myio.on('termFromServer', (d) => {
+    //   console.log('termFromServer', d);
+    // });
     // this.ptyprocess.write('pwd\r');
     // setTimeout(() => {
     //   this.ptyprocess.write('pwd\r');
@@ -65,10 +65,18 @@ export class EventsGateway {
         value: data,
         eventType: '',
       });
+      // console.log(this);
+      // if (this.server) {
+      //   console.log(this.server);
+      // }
       // this.server.broadcast.emit('termFromServer', data);
       this.server.emit('termFromServer', this.shellCenterData);
     });
     this.ptyprocess.resize(100, 40);
+    // console.log(this.server);
+    // this.server.connect('ws//docker.happylandle.club:4001');
+
+    // console.log('sssss');
   }
 
   keepTermData(data) {
@@ -96,7 +104,7 @@ export class EventsGateway {
   ImIn(client: Socket, payload: string): void {
     // console.log(client.handshake.address, ' 进入房间');
     client.join('room5');
-    console.log(`this.shellCenterData\n\n\n`, this.shellCenterData);
+    // console.log(`this.shellCenterData\n\n\n`, this.shellCenterData);
     client.emit('termFromServer', this.shellCenterData);
     // client.broadcast.emit('termFromServer', this.shellCenterData);
     // this.server.emit('msgToClient', payload);
@@ -105,6 +113,7 @@ export class EventsGateway {
     // client.emit('joinedRoom', 'room5');
     // client.broadcast.emit('initRoom', this.shellCenterData);
     console.log(client.handshake.address, ' 进入房间');
+    // console.log(this.server);
     // client.broadcast.emit('termFromServer', payload);
   }
   @SubscribeMessage('editorToServer')
@@ -120,7 +129,7 @@ export class EventsGateway {
     // this.server.emit('msgToClient', payload);
     // client.broadcast.emit('msgToClient', payload);
     console.log(client.handshake.address);
-    console.log(`payload: ${payload}`);
+    // console.log(`payload: ${payload}`);
     this.ptyprocess.write(JSON.parse(payload).value);
     client.broadcast.emit('termFromServer', payload);
     client.emit('termFromServer', payload);

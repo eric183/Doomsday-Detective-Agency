@@ -13,7 +13,7 @@ module.exports = {
       // tsconfigRootDir: __dirname,
       sourceType: 'module',
     },
-    plugins: ['@typescript-eslint/eslint-plugin', 'react-hooks'],
+    plugins: ['@typescript-eslint/eslint-plugin', 'react-hooks', '@emotion'],
     extends: [
       'plugin:@typescript-eslint/recommended',
       'plugin:prettier/recommended',
@@ -38,7 +38,7 @@ module.exports = {
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-explicit-any': 2,
+      '@typescript-eslint/no-explicit-any': 2
     },
   };
   
