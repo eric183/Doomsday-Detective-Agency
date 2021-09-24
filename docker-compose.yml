@@ -16,11 +16,11 @@ services:
     # Redis service
     depends_on: 
       - redis
-    environment:
-      - HTTP_PROXY=$HTTP_PROXY
-      - http_proxy=$http_proxy
-      - HTTPS_PROXY=$HTTPS_PROXY
-      - https_proxy=$https_proxy
+    # environment:
+    #   - HTTP_PROXY=$HTTP_PROXY
+    #   - http_proxy=$http_proxy
+    #   - HTTPS_PROXY=$HTTPS_PROXY
+    #   - https_proxy=$https_proxy
     networks:
       - nest-chat-network
   nginx:
@@ -34,11 +34,11 @@ services:
       - "80:80"
     # command: sh -c "cd /etc/nginx/templates && chown nginx:nginx ./*"
 
-    environment:
-      - HTTP_PROXY=$HTTP_PROXY
-      - http_proxy=$http_proxy
-      - HTTPS_PROXY=$HTTPS_PROXY
-      - https_proxy=$https_proxy
+    # environment:
+    #   - HTTP_PROXY=$HTTP_PROXY
+    #   - http_proxy=$http_proxy
+    #   - HTTPS_PROXY=$HTTPS_PROXY
+    #   - https_proxy=$https_proxy
     networks:
       - nest-chat-network
     #   - NGINX_HOST=foobar.com
