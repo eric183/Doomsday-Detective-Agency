@@ -31,6 +31,8 @@ services:
       # - ./templates:/etc/nginx/templates
     ports:
       - "80:80"
+    command: sh -c "chown nginx:nginx /etc/nginx/templates/*"
+
     environment:
       - HTTP_PROXY=$HTTP_PROXY
       - http_proxy=$http_proxy
