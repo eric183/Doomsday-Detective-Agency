@@ -30,7 +30,7 @@ services:
       - ./src/client/PaaS/dist:/etc/nginx/templates
       # - ./templates:/etc/nginx/templates
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       - HTTP_PROXY=$HTTP_PROXY
       - http_proxy=$http_proxy
